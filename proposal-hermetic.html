@@ -106,12 +106,28 @@
     [data-lang] { display: none; }
     [data-lang].active { display: block; }
 
-    @media(max-width:640px) {
-      header { padding: 28px 20px; }
-      main { padding: 32px 16px 60px; }
+    @media(max-width: 768px) {
+      header { padding: 28px 24px; }
+      header h1 { font-size: 22px; }
       .budget-grid { grid-template-columns: 1fr; }
       .tl-grid { grid-template-columns: 1fr; }
       .demo-box { flex-direction: column; text-align: center; }
+      .stack-item { flex-direction: column; gap: 8px; }
+    }
+    @media(max-width: 480px) {
+      .lang-bar { padding: 8px 16px; }
+      header { padding: 24px 16px; }
+      header h1 { font-size: 20px; }
+      main { padding: 28px 16px 60px; }
+      .budget-card-amount { font-size: 28px; }
+      .header-pills { gap: 8px; }
+      .pill { font-size: 12px; padding: 4px 12px; }
+      .scope-box { padding: 20px; }
+      .budget-card { padding: 18px 20px; }
+      .tl-card { padding: 16px; }
+      .demo-box { padding: 24px 20px; }
+      .btn-demo { font-size: 13px; padding: 10px 22px; }
+      .ghl-list, .stack-list { font-size: 14px; }
     }
   </style>
 </head>

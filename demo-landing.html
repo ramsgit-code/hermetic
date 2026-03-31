@@ -370,22 +370,47 @@
       .dl-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media(max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 28px; }
-      .form-card { border-radius: 10px; }
+      .hero { padding: 36px 0 0; }
+      .hero-inner { grid-template-columns: 1fr; padding: 0 20px; }
+      .hero-content { padding-bottom: 32px; }
+      .hero h1 { font-size: 26px; }
+      .hero-desc { font-size: 15px; }
+      .form-card { border-radius: 10px; padding: 24px 20px 0; }
+      .spec-strip { grid-template-columns: repeat(2,1fr); display: grid; border-radius: 8px; }
+      .spec-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+      .spec-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.12); }
+      .spec-item:nth-child(3), .spec-item:nth-child(4) { border-bottom: none; }
       .steps-strip { grid-template-columns: 1fr 1fr; }
       .about-grid { grid-template-columns: 1fr; }
-      .cta-banner { flex-direction: column; text-align: center; }
+      .about-visual { height: 200px; }
+      .cta-banner { flex-direction: column; text-align: center; padding: 32px 24px; }
       .footer-grid { grid-template-columns: 1fr; }
+      .page { padding: 40px 20px 60px; }
     }
     @media(max-width: 560px) {
-      .util-inner { flex-direction: column; gap: 6px; }
-      .hero-inner, .page { padding-left: 20px; padding-right: 20px; }
-      .nav-inner { padding: 0 20px; }
+      .util-contact { display: none; }
+      .util-inner { justify-content: center; }
+      .nav-inner { padding: 0 16px; height: 56px; gap: 12px; }
+      .nav-logo-hermetic { height: 26px; }
+      .nav-fi-text strong { font-size: 10px; }
+      .hero-inner { padding: 0 16px; }
+      .hero h1 { font-size: 22px; }
       .feature-grid, .dl-grid, .steps-strip { grid-template-columns: 1fr; }
+      .step-cell { border-right: none; border-bottom: 1px solid var(--border); }
+      .step-cell:last-child { border-bottom: none; }
       .video-grid { grid-template-columns: repeat(2, 1fr); }
       .f2col { grid-template-columns: 1fr; }
-      .tutorials-bg { padding: 24px; }
+      .tutorials-bg { padding: 20px 16px; }
+      .s-title { font-size: 22px; }
+      .cta-banner h2 { font-size: 20px; }
+      .btn-cta { width: 100%; text-align: center; }
+      .page { padding: 32px 16px 60px; }
+      .section { margin-bottom: 44px; }
+    }
+    @media(max-width: 380px) {
+      .hero h1 { font-size: 20px; }
+      .spec-strip { grid-template-columns: 1fr 1fr; }
+      .nav-logo-fi .nav-fi-text { display: none; }
     }
   </style>
 </head>

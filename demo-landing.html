@@ -6,411 +6,436 @@
   <title>Expert Tool V-Line – Selección de Bombas Herméticas | HERMETIC Ibérica</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
   <style>
+    /* ── TOKENS (exact HERMETIC CSS values) ── */
     :root {
-      --blue:        #003580;
-      --blue-mid:    #0044a8;
-      --blue-dark:   #001f4d;
-      --blue-light:  #e8f0fb;
-      --green:       #058036;
-      --green-light: #ecf5ec;
-      --green-dark:  #046828;
-      --gray-dark:   #1a1d23;
-      --gray:        #4b5563;
-      --gray-mid:    #6b7280;
-      --gray-light:  #f3f4f6;
-      --border:      #e5e7eb;
-      --white:       #ffffff;
+      --green:        #058036;
+      --green-hover:  #023617;
+      --green-btn:    #3a9f56;
+      --green-btn-hv: #35904e;
+      --green-light:  #ecf5ec;
+      --nav-bg:       #54555a;
+      --gray-bg:      #eaeaea;
+      --gray-darker:  #cecdcd;
+      --gray-dark:    #4b575c;
+      --body-text:    #212529;
+      --secondary:    #6c757d;
+      --meta:         #707070;
+      --border:       rgba(0,0,0,.125);
+      --card-shadow:  -2px 3px 12px #eaeaea;
+      --white:        #fff;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      font-size: 15px;
-      color: var(--gray-dark);
+      font-family: 'Source Sans 3', Tahoma, Arial, sans-serif;
+      font-size: 1.2rem;        /* 19.2px — exact HERMETIC body size */
+      font-weight: 300;
+      color: var(--body-text);
       background: var(--white);
-      line-height: 1.6;
+      line-height: 1.5625;
       -webkit-font-smoothing: antialiased;
     }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { color: var(--green-hover); text-decoration: none; }
 
-    /* ─── UTILITY BAR ─── */
-    .util-bar {
-      background: var(--blue-dark);
-      padding: 7px 0;
-      font-size: 12px;
-    }
-    .util-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 32px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .util-contact { display: flex; gap: 20px; }
-    .util-contact a { color: rgba(255,255,255,0.6); text-decoration: none; display: flex; align-items: center; gap: 5px; }
-    .util-contact a:hover { color: white; }
-    .util-langs { display: flex; gap: 4px; }
-    .util-lang {
-      color: rgba(255,255,255,0.55); font-size: 11px; font-weight: 600; cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.2); padding: 2px 10px; border-radius: 3px;
-      background: transparent; transition: all 0.15s; letter-spacing: 0.3px;
-      font-family: inherit;
-    }
-    .util-lang.active { background: var(--green); border-color: var(--green); color: white; }
-    .util-lang:hover:not(.active) { border-color: rgba(255,255,255,0.5); color: white; }
+    h1 { font-size: 3rem;   font-weight: 500; line-height: 1.1; margin-bottom: .5rem; color: var(--body-text); }
+    h2 { font-size: 2.4rem; font-weight: 400; line-height: 1.2; margin-bottom: .5rem; color: var(--body-text); }
+    h3 { font-size: 2.1rem; font-weight: 400; line-height: 1.2; margin-bottom: .5rem; color: var(--body-text); }
+    h4 { font-size: 1.8rem; font-weight: 400; line-height: 1.3; margin-bottom: .5rem; color: var(--body-text); }
+    h5 { font-size: 1.5rem; font-weight: 400; line-height: 1.3; margin-bottom: .5rem; }
+    p  { margin-bottom: 1rem; }
 
-    /* ─── NAV ─── */
-    nav {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky; top: 0; z-index: 200;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 32px;
-      display: flex; align-items: center;
-      height: 64px; gap: 24px;
-    }
-    .nav-logos { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
-    .nav-logo-hermetic { height: 32px; display: block; }
-    .nav-sep { width: 1px; height: 28px; background: var(--border); }
-    .nav-logo-fi {
-      display: flex; align-items: center; gap: 7px;
-      text-decoration: none; color: var(--gray-dark);
-    }
-    .nav-logo-fi img { height: 26px; width: 26px; object-fit: contain; border-radius: 3px; }
-    .nav-fi-text { line-height: 1.15; }
-    .nav-fi-text strong { font-size: 11px; font-weight: 700; display: block; color: var(--blue); letter-spacing: 0.5px; }
-    .nav-fi-text span { font-size: 10px; color: var(--gray-mid); letter-spacing: 0.3px; }
-    .nav-spacer { flex: 1; }
-    .btn-back {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-size: 12px; font-weight: 600; color: var(--gray);
-      text-decoration: none; padding: 6px 14px; border-radius: 5px;
-      border: 1px solid var(--border); background: var(--gray-light);
-      transition: all 0.15s; letter-spacing: 0.1px; font-family: inherit;
-    }
-    .btn-back:hover { background: var(--blue-light); border-color: #b8ccf0; color: var(--blue); }
-
-    /* ─── HERO ─── */
-    .hero {
-      background: linear-gradient(150deg, var(--blue-dark) 0%, var(--blue) 60%, #1456b0 100%);
-      padding: 56px 0 0;
-      position: relative; overflow: hidden;
-    }
-    .hero::after {
-      content: '';
-      position: absolute; right: 0; bottom: 0;
-      width: 45%; height: 100%;
-      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 400'%3E%3Ccircle cx='300' cy='200' r='300' fill='rgba(255,255,255,0.02)'/%3E%3Ccircle cx='300' cy='200' r='200' fill='rgba(255,255,255,0.02)'/%3E%3C/svg%3E") center/cover no-repeat;
-      pointer-events: none;
-    }
-    .hero-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 32px;
-      display: grid; grid-template-columns: 1fr 400px; gap: 48px; align-items: end;
-    }
-    .hero-content { padding-bottom: 52px; }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(5,128,54,0.25); border: 1px solid rgba(5,128,54,0.5);
-      border-radius: 20px; padding: 4px 14px; font-size: 11px; font-weight: 600;
-      color: #6ee7a0; margin-bottom: 22px; letter-spacing: 0.4px; text-transform: uppercase;
-    }
-    .hero-eyebrow::before { content: '●'; font-size: 8px; color: #4ade80; }
-    .hero h1 {
-      font-size: 38px; font-weight: 800; color: white; line-height: 1.15;
-      letter-spacing: -0.5px; margin-bottom: 18px;
-    }
-    .hero h1 em { font-style: normal; color: #7ec8ff; }
-    .hero-desc {
-      font-size: 16px; color: rgba(255,255,255,0.72); line-height: 1.7;
-      max-width: 500px; margin-bottom: 32px; font-weight: 400;
-    }
-    .spec-strip {
-      display: flex; gap: 0; border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.06);
-    }
-    .spec-item {
-      flex: 1; padding: 12px 14px; text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.12);
-    }
-    .spec-item:last-child { border-right: none; }
-    .spec-val { font-size: 15px; font-weight: 700; color: white; display: block; }
-    .spec-lbl { font-size: 10px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; display: block; }
-
-    /* ─── FORM CARD ─── */
-    .form-card {
-      background: white;
-      border-radius: 10px 10px 0 0;
-      padding: 28px 28px 0;
-      box-shadow: 0 -12px 48px rgba(0,0,0,0.25);
-    }
-    .form-card-head { margin-bottom: 20px; }
-    .form-card-head h2 { font-size: 17px; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
-    .form-card-head p { font-size: 13px; color: var(--gray-mid); }
-    .frow { margin-bottom: 11px; }
-    .frow label { display: block; font-size: 11px; font-weight: 600; color: var(--gray-mid); margin-bottom: 4px; letter-spacing: 0.3px; text-transform: uppercase; }
-    .frow input, .frow select {
-      width: 100%; border: 1.5px solid var(--border); border-radius: 6px;
-      padding: 9px 11px; font-size: 14px; color: var(--gray-dark); outline: none;
-      transition: border-color 0.15s; font-family: inherit; background: white;
-    }
-    .frow input:focus, .frow select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,53,128,0.08); }
-    .f2col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-    .btn-submit {
-      width: 100%; background: var(--green); color: white; border: none;
-      border-radius: 6px; padding: 13px; font-size: 15px; font-weight: 700;
-      cursor: pointer; margin-top: 4px; transition: background 0.15s;
-      font-family: inherit; letter-spacing: 0.2px;
-    }
-    .btn-submit:hover { background: var(--green-dark); }
-    .form-legal { font-size: 11px; color: #aaa; text-align: center; margin-top: 8px; padding-bottom: 22px; line-height: 1.5; }
-    .form-legal a { color: var(--blue); text-decoration: none; }
-
-    /* ─── PAGE BODY ─── */
-    .page { max-width: 1200px; margin: 0 auto; padding: 64px 32px 80px; }
-    .section { margin-bottom: 64px; }
-    .s-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green); margin-bottom: 10px; }
-    .s-title { font-size: 26px; font-weight: 800; color: var(--blue); margin-bottom: 8px; letter-spacing: -0.3px; }
-    .s-sub { font-size: 15px; color: var(--gray-mid); max-width: 580px; line-height: 1.65; margin-bottom: 32px; }
-    .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
-
-    /* ─── FEATURES ─── */
-    .feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .feature-card {
-      border: 1px solid var(--border); border-radius: 8px; padding: 24px;
-      transition: box-shadow 0.2s, border-color 0.2s; background: white;
-    }
-    .feature-card:hover { box-shadow: 0 6px 24px rgba(0,53,128,0.1); border-color: #b8ccf0; }
-    .feat-icon {
-      width: 44px; height: 44px; border-radius: 8px; background: var(--blue-light);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; margin-bottom: 14px;
-    }
-    .feature-card h3 { font-size: 14px; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
-    .feature-card p { font-size: 13px; color: var(--gray-mid); line-height: 1.55; }
-
-    /* ─── STEPS ─── */
-    .steps-strip {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-    }
-    .step-cell {
-      padding: 24px 22px;
-      border-right: 1px solid var(--border);
-      position: relative;
-    }
-    .step-cell:last-child { border-right: none; }
-    .step-n {
-      font-size: 28px; font-weight: 800; color: var(--blue-light);
-      line-height: 1; margin-bottom: 10px; font-variant-numeric: tabular-nums;
-    }
-    .step-cell h4 { font-size: 14px; font-weight: 700; color: var(--blue); margin-bottom: 6px; }
-    .step-cell p { font-size: 13px; color: var(--gray-mid); line-height: 1.5; }
-
-    /* ─── TUTORIALS ─── */
-    .tutorials-bg { background: var(--gray-light); border-radius: 10px; padding: 40px; margin-bottom: 64px; }
-    .video-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-    .video-card {
-      border-radius: 8px; overflow: hidden; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s; position: relative;
-    }
-    .video-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-    .video-thumb {
-      aspect-ratio: 16/9;
-      background: linear-gradient(135deg, var(--blue-dark), var(--blue-mid));
-      display: flex; align-items: center; justify-content: center;
-    }
-    .video-card:nth-child(2) .video-thumb { background: linear-gradient(135deg, #002a5c, #005ccc); }
-    .video-card:nth-child(3) .video-thumb { background: linear-gradient(135deg, var(--blue-dark), #0044a0); }
-    .video-card:nth-child(4) .video-thumb { background: linear-gradient(135deg, #001840, var(--blue)); }
-    .video-card:nth-child(5) .video-thumb { background: linear-gradient(135deg, #002040, #004eb8); }
-    .play-btn {
-      width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(255,255,255,0.92);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; color: var(--blue); padding-left: 2px;
-    }
-    .video-info { background: white; padding: 10px 12px; }
-    .video-info span { font-size: 12px; font-weight: 600; color: var(--gray-dark); line-height: 1.3; display: block; }
-
-    /* ─── DOWNLOADS ─── */
-    .dl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .dl-card {
-      border: 1px solid var(--border); border-radius: 8px;
-      display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .dl-card:hover { border-color: #b8ccf0; box-shadow: 0 3px 12px rgba(0,53,128,0.07); }
-    .dl-icon {
-      width: 42px; height: 42px; border-radius: 6px;
-      background: var(--blue-light); flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center; font-size: 20px;
-    }
-    .dl-card h4 { font-size: 13px; font-weight: 700; color: var(--blue); margin-bottom: 4px; line-height: 1.3; }
-    .dl-card p { font-size: 12px; color: var(--gray-mid); line-height: 1.4; margin-bottom: 8px; }
-    .dl-badge {
-      display: inline-flex; align-items: center; gap: 4px;
-      font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px;
-      background: #fef3c7; color: #92400e; border: 1px solid #fcd34d; letter-spacing: 0.2px;
+    /* ── DEMO RIBBON ── */
+    .demo-ribbon {
+      position: fixed; top: 50%; right: -28px; z-index: 9999;
+      background: #f97316; color: #fff; font-size: 10px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; padding: 5px 36px;
+      transform: rotate(90deg) translateX(50%); pointer-events: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,.3);
     }
 
-    /* ─── ABOUT ─── */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
-    .about-visual {
-      border-radius: 10px; overflow: hidden;
-      background: linear-gradient(150deg, var(--blue-dark), var(--blue));
-      height: 300px; display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 16px; color: white;
-    }
-    .about-icon { font-size: 64px; opacity: 0.9; }
-    .about-visual strong { font-size: 16px; font-weight: 700; }
-    .about-visual span { font-size: 13px; color: rgba(255,255,255,0.5); }
-    .about-text h2 { font-size: 24px; font-weight: 800; color: var(--blue); margin-bottom: 14px; letter-spacing: -0.3px; }
-    .about-text p { font-size: 14px; color: var(--gray-mid); line-height: 1.7; margin-bottom: 14px; }
-    .check-list { list-style: none; margin-top: 4px; }
-    .check-list li {
-      font-size: 14px; color: var(--gray); padding: 8px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex; align-items: flex-start; gap: 10px;
-    }
-    .check-list li::before {
-      content: '✓'; color: var(--green); font-weight: 700;
-      font-size: 13px; margin-top: 2px; flex-shrink: 0;
-    }
-
-    /* ─── CTA BANNER ─── */
-    .cta-banner {
-      background: linear-gradient(135deg, var(--blue-dark), var(--blue));
-      border-radius: 10px; padding: 44px 48px;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 32px; flex-wrap: wrap;
-    }
-    .cta-banner h2 { font-size: 24px; font-weight: 800; color: white; margin-bottom: 6px; letter-spacing: -0.2px; }
-    .cta-banner p { font-size: 15px; color: rgba(255,255,255,0.7); max-width: 440px; }
-    .btn-cta {
-      background: var(--green); color: white; font-weight: 700;
-      padding: 14px 32px; border-radius: 6px; text-decoration: none;
-      font-size: 15px; white-space: nowrap; transition: background 0.15s;
-      display: inline-block; letter-spacing: 0.1px;
-    }
-    .btn-cta:hover { background: var(--green-dark); }
-
-    /* ─── FOOTER ─── */
-    footer { background: var(--blue-dark); padding: 44px 0 28px; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
-    .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr;
-      gap: 40px; padding-bottom: 32px;
-      border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 22px;
-    }
-    .footer-brand img { height: 26px; filter: brightness(0) invert(0.6); margin-bottom: 14px; display: block; }
-    .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.65; max-width: 380px; }
-    .footer-col h4 { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 14px; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 8px; }
-    .footer-col ul li a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 13px; transition: color 0.15s; }
-    .footer-col ul li a:hover { color: white; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; font-size: 12px; color: rgba(255,255,255,0.25); }
-    .footer-bottom a { color: rgba(255,255,255,0.3); text-decoration: none; }
-    .footer-bottom a:hover { color: rgba(255,255,255,0.6); }
-
-    /* ─── MODAL ─── */
+    /* ── MODAL ── */
     .modal-overlay {
       display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.55); z-index: 1000;
-      align-items: center; justify-content: center;
-      backdrop-filter: blur(4px);
+      background: hsla(0,0%,4%,.8); backdrop-filter: blur(5px);
+      z-index: 5500; align-items: center; justify-content: center;
     }
     .modal-overlay.open { display: flex; }
     .modal {
-      background: white; border-radius: 12px; padding: 44px 40px;
-      max-width: 440px; width: 90%; text-align: center;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.3);
+      background: var(--white); border-radius: .25rem;
+      padding: 40px; max-width: 440px; width: 90%; text-align: center;
+      box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
     }
     .modal-check {
-      width: 60px; height: 60px; border-radius: 50%;
-      background: var(--green-light); margin: 0 auto 18px;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--green-light); margin: 0 auto 16px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 28px;
+      font-size: 26px; color: var(--green);
     }
-    .modal h3 { font-size: 22px; font-weight: 800; color: var(--blue); margin-bottom: 10px; }
-    .modal p { font-size: 14px; color: var(--gray-mid); margin-bottom: 24px; line-height: 1.65; }
+    .modal h3 { font-size: 1.8rem; color: var(--green); margin-bottom: 10px; }
+    .modal p  { font-size: 1.1rem; color: var(--secondary); margin-bottom: 22px; }
     .btn-expert {
-      display: block; background: var(--blue); color: white;
-      padding: 13px 24px; border-radius: 6px; text-decoration: none;
-      font-weight: 700; font-size: 14px; margin-bottom: 10px; transition: background 0.15s;
+      display: block; background: var(--green-btn); color: var(--white);
+      padding: .5rem 1rem; border-radius: .25rem; font-size: 1.2rem;
+      font-weight: 600; margin-bottom: 10px; transition: background .2s;
     }
-    .btn-expert:hover { background: var(--blue-mid); }
+    .btn-expert:hover { background: var(--green-btn-hv); color: var(--white); }
     .btn-dismiss {
-      background: none; border: 1.5px solid var(--border); color: var(--gray-mid);
-      padding: 11px 24px; border-radius: 6px; font-size: 14px; font-weight: 500;
-      cursor: pointer; font-family: inherit; width: 100%; transition: border-color 0.15s;
+      background: none; border: 1px solid var(--border); color: var(--secondary);
+      padding: .375rem .75rem; border-radius: .25rem; font-size: 1.1rem;
+      cursor: pointer; font-family: inherit; width: 100%;
     }
-    .btn-dismiss:hover { border-color: #b8ccf0; color: var(--blue); }
+    .btn-dismiss:hover { border-color: #adb5bd; }
 
-    /* ─── DEMO RIBBON ─── */
-    .demo-ribbon {
-      position: fixed; top: 50%; right: -30px;
-      background: #f97316; color: white; font-size: 10px; font-weight: 800;
-      letter-spacing: 2px; padding: 5px 40px; border-radius: 0;
-      text-transform: uppercase; z-index: 9999;
-      transform: rotate(90deg) translateX(50%);
-      pointer-events: none; box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    /* ── TOP UTILITY BAR ── */
+    .util-bar {
+      background: var(--white);
+      border-bottom: 1px solid #dee2e6;
+      padding: 6px 0; font-size: .9rem;
+    }
+    .util-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 15px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .util-contact { display: flex; gap: 20px; color: var(--meta); }
+    .util-contact a { color: var(--meta); font-size: .9rem; }
+    .util-contact a:hover { color: var(--green); }
+    .util-langs { display: flex; gap: 4px; }
+    .util-lang {
+      font-size: .85rem; font-weight: 600; cursor: pointer;
+      border: 1px solid #dee2e6; padding: 1px 10px;
+      background: transparent; color: var(--meta); transition: all .15s;
+      font-family: inherit; border-radius: 2px;
+    }
+    .util-lang.active { background: var(--green); border-color: var(--green); color: var(--white); }
+    .util-lang:hover:not(.active) { border-color: var(--green); color: var(--green); }
+
+    /* ── HEADER (white logo bar) ── */
+    .site-header {
+      background: var(--white);
+      padding: 10px 0;
+      position: sticky; top: 0; z-index: 200;
+      box-shadow: 0 2px 4px rgba(0,0,0,.06);
+      height: 80px; display: flex; align-items: center;
+    }
+    .header-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 15px;
+      display: flex; align-items: center; justify-content: space-between; width: 100%;
+    }
+    .header-logos { display: flex; align-items: center; gap: 16px; }
+    .logo-hermetic { height: 40px; display: block; }
+    .logo-sep { width: 1px; height: 32px; background: #dee2e6; }
+    .logo-fi {
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none; color: var(--body-text);
+    }
+    .logo-fi img { height: 28px; width: 28px; object-fit: contain; border-radius: 2px; }
+    .logo-fi-text strong { font-size: .75rem; font-weight: 700; display: block; color: var(--nav-bg); letter-spacing: .5px; line-height: 1.15; }
+    .logo-fi-text span   { font-size: .65rem; color: var(--meta); letter-spacing: .3px; }
+    .btn-back {
+      font-size: .9rem; font-weight: 600; color: var(--meta);
+      border: 1px solid #dee2e6; padding: 5px 14px; border-radius: 2px;
+      background: #f8f9fa; transition: all .15s;
+    }
+    .btn-back:hover { color: var(--green); border-color: var(--green); background: var(--green-light); }
+
+    /* ── PRIMARY NAV BAR ── */
+    .primary-nav {
+      background: var(--nav-bg);
+      padding: 0;
+    }
+    .primary-nav-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 15px;
+      display: flex; align-items: center; gap: 0;
+    }
+    .nav-item {
+      display: flex; align-items: center;
+      padding: 10px 18px; font-size: 1rem; font-weight: 400;
+      color: rgba(255,255,255,.8); cursor: pointer; transition: background .15s;
+      border-right: 1px solid rgba(255,255,255,.08); white-space: nowrap;
+    }
+    .nav-item:hover { background: #4c4c4c; color: var(--white); }
+    .nav-item.active-nav { background: var(--green); color: var(--white); }
+
+    /* ── HERO BANNER ── */
+    .hero-banner {
+      background: var(--nav-bg);
+      height: 265px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+    }
+    .hero-banner::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, rgba(0,0,0,.5) 0%, rgba(84,85,90,.3) 60%, rgba(84,85,90,.1) 100%);
+    }
+    .hero-banner-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 15px;
+      position: relative; z-index: 1; width: 100%;
+    }
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--green); color: var(--white);
+      font-size: .85rem; font-weight: 600; letter-spacing: .5px;
+      text-transform: uppercase; padding: 3px 12px; border-radius: 2px;
+      margin-bottom: 16px;
+    }
+    .hero-banner h1 {
+      font-size: 2.4rem; font-weight: 500; color: var(--white);
+      line-height: 1.15; max-width: 680px; margin-bottom: 12px;
+    }
+    .hero-banner h1 em { font-style: normal; color: #8fe0a8; }
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,.8);
+      max-width: 540px; font-weight: 300;
     }
 
-    /* ─── LANG ─── */
-    [data-l] { display: none; }
-    [data-l].on { display: inline; }
+    /* ── SPEC STRIP ── */
+    .spec-strip {
+      background: var(--nav-bg); border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .spec-strip-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 15px;
+      display: flex;
+    }
+    .spec-cell {
+      flex: 1; padding: 14px 18px; text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    .spec-cell:last-child { border-right: none; }
+    .spec-val { font-size: 1.3rem; font-weight: 700; color: var(--white); display: block; }
+    .spec-lbl { font-size: .75rem; color: rgba(255,255,255,.5); text-transform: uppercase; letter-spacing: .4px; display: block; margin-top: 2px; }
+
+    /* ── LAYOUT WRAPPER ── */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 15px; }
+    .section { padding: 50px 0; }
+    .section-gray   { background: var(--gray-bg); }
+    .section-green  { background: var(--green-light); border-bottom: 2px solid var(--green); }
+    .section-darker { background: var(--gray-darker); }
+
+    /* section headings */
+    .s-label {
+      font-size: .85rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.2px; color: var(--green); margin-bottom: 8px;
+    }
+    .s-title {
+      font-size: 2.1rem; font-weight: 400; color: var(--body-text);
+      margin-bottom: 8px; padding-bottom: 5px;
+      border-bottom: dotted 2px #dee2e6; display: inline-block;
+    }
+    .s-desc { font-size: 1.1rem; color: var(--secondary); max-width: 640px; margin-top: 12px; margin-bottom: 32px; }
+
+    /* ── GRID COLUMNS (HERMETIC card style) ── */
+    .row { display: flex; flex-wrap: wrap; margin: 0 -10px; }
+    .col { padding: 10px; }
+    .col-3  { flex: 0 0 25%;   max-width: 25%; }
+    .col-4  { flex: 0 0 33.33%; max-width: 33.33%; }
+    .col-6  { flex: 0 0 50%;   max-width: 50%; }
+    .col-12 { flex: 0 0 100%;  max-width: 100%; }
+
+    .grid-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: .25rem;
+      padding: 10px 10px 28px;
+      box-shadow: var(--card-shadow);
+      height: 100%;
+    }
+    .grid-card .card-icon {
+      font-size: 2rem; margin-bottom: 12px; display: block;
+      color: var(--green);
+    }
+    .grid-card h4 { font-size: 1.3rem; font-weight: 600; color: var(--body-text); margin-bottom: 8px; }
+    .grid-card p  { font-size: 1rem; color: var(--secondary); line-height: 1.55; margin: 0; }
+
+    /* ── PICTOGRAM LIST (matching HERMETIC feature list style) ── */
+    .picto-list { list-style: none; margin: 0; padding: 0; }
+    .picto-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 16px 0; border-bottom: 1px solid #dee2e6;
+    }
+    .picto-item:last-child { border-bottom: none; }
+    .picto-icon {
+      flex-shrink: 0; width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem;
+    }
+    .picto-text h5 { font-size: 1.1rem; font-weight: 600; color: var(--body-text); margin-bottom: 4px; }
+    .picto-text p  { font-size: 1rem; color: var(--secondary); margin: 0; line-height: 1.5; }
+
+    /* ── FORM ── */
+    .form-wrapper {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: .25rem; padding: 28px; box-shadow: var(--card-shadow);
+    }
+    .form-wrapper h3 { font-size: 1.5rem; color: var(--green); margin-bottom: 6px; }
+    .form-wrapper > p { font-size: 1rem; color: var(--secondary); margin-bottom: 20px; }
+    .form-group { margin-bottom: 10px; }
+    .form-group label {
+      display: block; font-size: .85rem; font-weight: 600;
+      color: var(--secondary); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .3px;
+    }
+    .form-control {
+      display: block; width: 100%; height: 45px; font-size: 1rem;
+      color: var(--body-text); background: var(--white);
+      border: none; border-radius: 0; outline: none; font-family: inherit;
+      box-shadow: 0 3px 6px rgba(0,0,0,.16); padding: 0 12px;
+      transition: box-shadow .15s;
+    }
+    .form-control:focus { box-shadow: 0 0 0 .2rem rgba(0,123,255,.25); }
+    .f2col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 10px; }
+    .btn-submit {
+      display: block; width: 100%; background: var(--green-btn); color: var(--white);
+      border: none; border-radius: .25rem; padding: .5rem .75rem;
+      font-size: 1.2rem; font-weight: 600; cursor: pointer;
+      font-family: inherit; margin-top: 8px; transition: background .15s;
+    }
+    .btn-submit:hover { background: var(--green-btn-hv); }
+    .form-legal { font-size: .8rem; color: #aaa; margin-top: 8px; text-align: center; }
+    .form-legal a { color: var(--green); }
+
+    /* ── VIDEO SECTION ── */
+    .video-grid { display: flex; flex-wrap: wrap; margin: 0 -10px; }
+    .video-col { flex: 0 0 20%; max-width: 20%; padding: 10px; }
+    .video-card {
+      border: 1px solid var(--border); border-radius: .25rem;
+      overflow: hidden; box-shadow: var(--card-shadow);
+      cursor: pointer; transition: box-shadow .2s;
+    }
+    .video-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .video-thumb {
+      aspect-ratio: 16/9; background: var(--nav-bg);
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .video-card:nth-child(2) .video-thumb { background: #3a3b40; }
+    .video-card:nth-child(3) .video-thumb { background: #4b575c; }
+    .video-card:nth-child(4) .video-thumb { background: #3f4044; }
+    .video-card:nth-child(5) .video-thumb { background: #464750; }
+    .play-btn {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: var(--nav-bg); padding-left: 3px;
+      transition: transform .25s ease, opacity .25s;
+    }
+    .video-card:hover .play-btn { transform: scale(1.1); }
+    .video-info { padding: 10px 12px; background: var(--white); }
+    .video-info span { font-size: .9rem; font-weight: 600; color: var(--body-text); line-height: 1.3; display: block; }
+
+    /* ── DOWNLOAD SECTION ── */
+    .dl-item {
+      background: var(--gray-bg); padding: 20px; margin-bottom: 12px;
+      border-radius: .25rem;
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .dl-thumb {
+      width: 52px; height: 52px; flex-shrink: 0;
+      background: var(--white); border: 1px solid #9a9a9a;
+      border-radius: 2px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+    .dl-content h5 { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; border-bottom: dotted 2px #4c4c4c; padding-bottom: 4px; display: inline-block; }
+    .dl-content p  { font-size: .95rem; color: var(--secondary); margin: 6px 0 0; }
+    .dl-badge {
+      display: inline-block; font-size: .75rem; font-weight: 700;
+      background: #fff3cd; color: #856404; border: 1px solid #ffc107;
+      border-radius: 2px; padding: 1px 7px; margin-top: 6px; letter-spacing: .2px;
+    }
+
+    /* ── ABOUT / CHECK-LIST ── */
+    .check-list { list-style: none; margin: 16px 0 0; padding: 0; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 8px 0; border-bottom: 1px solid #dee2e6;
+      font-size: 1.05rem; color: var(--body-text);
+    }
+    .check-list li:last-child { border-bottom: none; }
+    .check-list li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 2px; }
+
+    /* ── CTA BANNER ── */
+    .cta-banner {
+      background: var(--green-btn); padding: 40px 0;
+      display: flex; align-items: center;
+    }
+    .cta-banner .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+    .cta-banner h2 { font-size: 2rem; color: var(--white); margin: 0 0 6px; }
+    .cta-banner p  { font-size: 1.1rem; color: rgba(255,255,255,.85); margin: 0; max-width: 520px; }
+    .btn-cta {
+      background: var(--white); color: var(--green-btn); font-weight: 700;
+      padding: .5rem 1.5rem; border-radius: .25rem; font-size: 1.1rem;
+      white-space: nowrap; transition: background .15s; display: inline-block;
+    }
+    .btn-cta:hover { background: var(--green-light); color: var(--green); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--nav-bg); padding: 34px 0 48px; }
+    .footer-grid {
+      display: flex; flex-wrap: wrap; gap: 0; margin-bottom: 28px;
+    }
+    .footer-col { flex: 1; min-width: 180px; padding: 0 15px; }
+    .footer-col h5 {
+      font-size: .9rem; font-weight: 700; color: rgba(255,255,255,.7);
+      text-transform: uppercase; letter-spacing: .8px; margin-bottom: 14px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 7px; }
+    .footer-col ul li a { font-size: .95rem; color: rgba(255,255,255,.45); }
+    .footer-col ul li a:hover { color: var(--white); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08); padding-top: 20px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 10px;
+      font-size: .85rem; color: rgba(255,255,255,.3);
+    }
+    .footer-bottom a { color: rgba(255,255,255,.35); }
+    .footer-bottom a:hover { color: rgba(255,255,255,.7); }
+    .footer-brand img { height: 24px; filter: brightness(0) invert(.6); margin-bottom: 12px; display: block; }
+    .footer-brand p { font-size: .9rem; color: rgba(255,255,255,.4); line-height: 1.6; max-width: 320px; }
+
+    /* ── LANG ── */
+    [data-l]  { display: none; }
+    [data-l].on  { display: inline; }
     [data-lb] { display: none; }
     [data-lb].on { display: block; }
 
-    /* ─── RESPONSIVE ─── */
-    @media(max-width: 1024px) {
-      .feature-grid { grid-template-columns: repeat(2, 1fr); }
-      .video-grid { grid-template-columns: repeat(3, 1fr); }
-      .dl-grid { grid-template-columns: repeat(2, 1fr); }
+    /* ── RESPONSIVE ── */
+    @media(max-width: 992px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.9rem; }
+      .col-3 { flex: 0 0 50%; max-width: 50%; }
+      .video-col { flex: 0 0 33.33%; max-width: 33.33%; }
     }
     @media(max-width: 768px) {
-      .hero { padding: 36px 0 0; }
-      .hero-inner { grid-template-columns: 1fr; padding: 0 20px; }
-      .hero-content { padding-bottom: 32px; }
-      .hero h1 { font-size: 26px; }
-      .hero-desc { font-size: 15px; }
-      .form-card { border-radius: 10px; padding: 24px 20px 0; }
-      .spec-strip { grid-template-columns: repeat(2,1fr); display: grid; border-radius: 8px; }
-      .spec-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
-      .spec-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.12); }
-      .spec-item:nth-child(3), .spec-item:nth-child(4) { border-bottom: none; }
-      .steps-strip { grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr; }
-      .about-visual { height: 200px; }
-      .cta-banner { flex-direction: column; text-align: center; padding: 32px 24px; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .page { padding: 40px 20px 60px; }
+      .hero-banner { height: auto; padding: 36px 0 28px; }
+      .hero-banner h1 { font-size: 1.8rem; }
+      .spec-strip-inner { flex-wrap: wrap; }
+      .spec-cell { flex: 0 0 50%; border-bottom: 1px solid rgba(255,255,255,.1); }
+      .spec-cell:nth-child(3), .spec-cell:nth-child(4) { border-bottom: none; }
+      .col-3, .col-4 { flex: 0 0 50%; max-width: 50%; }
+      .col-6 { flex: 0 0 100%; max-width: 100%; }
+      .video-col { flex: 0 0 50%; max-width: 50%; }
+      .cta-banner .container { flex-direction: column; text-align: center; }
+      .btn-cta { width: 100%; text-align: center; }
+      .footer-col { flex: 0 0 50%; }
+      .f2col { grid-template-columns: 1fr; }
+      .primary-nav-inner { overflow-x: auto; }
     }
-    @media(max-width: 560px) {
+    @media(max-width: 576px) {
       .util-contact { display: none; }
       .util-inner { justify-content: center; }
-      .nav-inner { padding: 0 16px; height: 56px; gap: 12px; }
-      .nav-logo-hermetic { height: 26px; }
-      .nav-fi-text strong { font-size: 10px; }
-      .hero-inner { padding: 0 16px; }
-      .hero h1 { font-size: 22px; }
-      .feature-grid, .dl-grid, .steps-strip { grid-template-columns: 1fr; }
-      .step-cell { border-right: none; border-bottom: 1px solid var(--border); }
-      .step-cell:last-child { border-bottom: none; }
-      .video-grid { grid-template-columns: repeat(2, 1fr); }
-      .f2col { grid-template-columns: 1fr; }
-      .tutorials-bg { padding: 20px 16px; }
-      .s-title { font-size: 22px; }
-      .cta-banner h2 { font-size: 20px; }
-      .btn-cta { width: 100%; text-align: center; }
-      .page { padding: 32px 16px 60px; }
-      .section { margin-bottom: 44px; }
-    }
-    @media(max-width: 380px) {
-      .hero h1 { font-size: 20px; }
-      .spec-strip { grid-template-columns: 1fr 1fr; }
-      .nav-logo-fi .nav-fi-text { display: none; }
+      .site-header { height: 60px; }
+      .logo-hermetic { height: 28px; }
+      .hero-banner h1 { font-size: 1.5rem; }
+      .hero-sub { font-size: 1rem; }
+      .col-3, .col-4, .col-6 { flex: 0 0 100%; max-width: 100%; }
+      .video-col { flex: 0 0 100%; max-width: 100%; }
+      .footer-col { flex: 0 0 100%; margin-bottom: 20px; }
+      .section { padding: 32px 0; }
+      .nav-item { padding: 10px 12px; font-size: .9rem; }
+      .logo-fi-text { display: none; }
     }
   </style>
 </head>
@@ -423,10 +448,8 @@
   <div class="modal">
     <div class="modal-check">✓</div>
     <h3 id="m-title">¡Acceso concedido!</h3>
-    <p id="m-body">Recibirá un correo con el enlace de acceso al Expert Tool V-Line y todos los recursos descargables.</p>
-    <a id="m-link" href="https://www.hermetic-pumpen.com/en/expert-tool/canned-motor-pumps-for-chemical-and-petrochemical-industries" target="_blank" rel="noopener" class="btn-expert">
-      Acceder al Expert Tool →
-    </a>
+    <p id="m-body">Recibirá un correo con el enlace al Expert Tool V-Line y todos los recursos.</p>
+    <a id="m-link" href="https://www.hermetic-pumpen.com/en/expert-tool/canned-motor-pumps-for-chemical-and-petrochemical-industries" target="_blank" class="btn-expert">Acceder al Expert Tool →</a>
     <button class="btn-dismiss" id="m-btn" onclick="document.getElementById('modal').classList.remove('open')">Cerrar</button>
   </div>
 </div>
@@ -435,14 +458,8 @@
 <div class="util-bar">
   <div class="util-inner">
     <div class="util-contact">
-      <a href="mailto:perez.ivan@hermetic-pumpen.com">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
-        perez.ivan@hermetic-pumpen.com
-      </a>
-      <a href="https://www.hermetic-pumpen.com" target="_blank" rel="noopener">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-        hermetic-pumpen.com
-      </a>
+      <a href="mailto:perez.ivan@hermetic-pumpen.com">perez.ivan@hermetic-pumpen.com</a>
+      <a href="https://www.hermetic-pumpen.com" target="_blank">hermetic-pumpen.com</a>
     </div>
     <div class="util-langs">
       <button class="util-lang active" onclick="setLang('es',this)">ES</button>
@@ -452,296 +469,192 @@
   </div>
 </div>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <div class="nav-logos">
-      <a href="https://www.hermetic-pumpen.com" target="_blank" rel="noopener">
-        <img src="logo-hermetic.svg" alt="HERMETIC-Pumpen" class="nav-logo-hermetic" />
+<!-- HEADER (white logo bar) -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-logos">
+      <a href="https://www.hermetic-pumpen.com" target="_blank">
+        <img src="logo-hermetic.svg" alt="HERMETIC-Pumpen" class="logo-hermetic" />
       </a>
-      <div class="nav-sep"></div>
-      <a href="https://formacion-industrial.com/" target="_blank" rel="noopener" class="nav-logo-fi">
+      <div class="logo-sep"></div>
+      <a href="https://formacion-industrial.com/" target="_blank" class="logo-fi">
         <img src="https://formacion-industrial.com/wp-content/uploads/2026/03/FAVICON-REDUCED-WHITE-BG300.jpg" alt="Formación Industrial" />
-        <div class="nav-fi-text">
+        <div class="logo-fi-text">
           <strong>FORMACIÓN</strong>
           <span>INDUSTRIAL</span>
         </div>
       </a>
     </div>
-    <div class="nav-spacer"></div>
     <a href="proposal-hermetic.html" class="btn-back">
       ← <span data-l="es" class="on">Ver propuesta</span><span data-l="en">View proposal</span><span data-l="de">Angebot</span>
     </a>
   </div>
+</header>
+
+<!-- PRIMARY NAV -->
+<nav class="primary-nav">
+  <div class="primary-nav-inner">
+    <div class="nav-item active-nav">Expert Tool</div>
+    <div class="nav-item"><span data-l="es" class="on">Química / Petroquímica</span><span data-l="en">Chemical / Petrochemical</span><span data-l="de">Chemie / Petrochemie</span></div>
+    <div class="nav-item"><span data-l="es" class="on">Productos</span><span data-l="en">Products</span><span data-l="de">Produkte</span></div>
+    <div class="nav-item"><span data-l="es" class="on">Descargas</span><span data-l="en">Downloads</span><span data-l="de">Downloads</span></div>
+    <div class="nav-item"><span data-l="es" class="on">Contacto</span><span data-l="en">Contact</span><span data-l="de">Kontakt</span></div>
+  </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span data-l="es" class="on">Acceso exclusivo para alumnos del curso</span>
-        <span data-l="en">Exclusive access for course students</span>
-        <span data-l="de">Exklusiver Zugang für Kursteilnehmer</span>
-      </div>
-
-      <div data-lb="es" class="on">
-        <h1>Selecciona tu bomba<br/>en menos de 2 minutos<br/>con el <em>Expert Tool V-Line</em></h1>
-        <p class="hero-desc">Acceso gratuito a la herramienta profesional de selección de bombas herméticas, normalmente reservada a clientes industriales — incluida en tu formación.</p>
-      </div>
-      <div data-lb="en">
-        <h1>Select your pump<br/>in less than 2 minutes<br/>with the <em>Expert Tool V-Line</em></h1>
-        <p class="hero-desc">Free access to the professional canned motor pump selection tool normally reserved for industrial clients — included with your training.</p>
-      </div>
-      <div data-lb="de">
-        <h1>Wählen Sie Ihre Pumpe<br/>in weniger als 2 Minuten<br/>mit dem <em>Expert Tool V-Line</em></h1>
-        <p class="hero-desc">Kostenloser Zugang zum professionellen Spaltrohrpumpen-Auswahlprogramm, das normalerweise nur Industriekunden vorbehalten ist — in Ihrer Schulung enthalten.</p>
-      </div>
-
-      <div class="spec-strip">
-        <div class="spec-item">
-          <span class="spec-val">12–295 m</span>
-          <span class="spec-lbl"><span data-l="es" class="on">Altura</span><span data-l="en">Head</span><span data-l="de">Förderhöhe</span></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-val">1–130 m³/h</span>
-          <span class="spec-lbl"><span data-l="es" class="on">Caudal</span><span data-l="en">Flow</span><span data-l="de">Fördermenge</span></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-val">–50/+180 °C</span>
-          <span class="spec-lbl"><span data-l="es" class="on">Temperatura</span><span data-l="en">Temperature</span><span data-l="de">Temperatur</span></span>
-        </div>
-        <div class="spec-item">
-          <span class="spec-val">16–40 bar</span>
-          <span class="spec-lbl"><span data-l="es" class="on">Presión</span><span data-l="en">Pressure</span><span data-l="de">Druck</span></span>
-        </div>
-      </div>
+<!-- HERO BANNER -->
+<div class="hero-banner">
+  <div class="hero-banner-inner">
+    <div class="hero-eyebrow">
+      <span data-l="es" class="on">Acceso exclusivo para alumnos del curso</span>
+      <span data-l="en">Exclusive access for course students</span>
+      <span data-l="de">Exklusiver Zugang für Kursteilnehmer</span>
     </div>
-
-    <!-- FORM -->
-    <div class="form-card">
-      <div class="form-card-head">
-        <h2>
-          <span data-l="es" class="on">Solicitar acceso gratuito</span>
-          <span data-l="en">Request free access</span>
-          <span data-l="de">Kostenlosen Zugang anfordern</span>
-        </h2>
-        <p>
-          <span data-l="es" class="on">Rellena el formulario y recibe el acceso al instante.</span>
-          <span data-l="en">Fill in the form and receive instant access.</span>
-          <span data-l="de">Formular ausfüllen und sofort Zugang erhalten.</span>
-        </p>
-      </div>
-      <div class="f2col">
-        <div class="frow">
-          <label><span data-l="es" class="on">Nombre</span><span data-l="en">First name</span><span data-l="de">Vorname</span></label>
-          <input type="text" />
-        </div>
-        <div class="frow">
-          <label><span data-l="es" class="on">Apellidos</span><span data-l="en">Last name</span><span data-l="de">Nachname</span></label>
-          <input type="text" />
-        </div>
-      </div>
-      <div class="frow">
-        <label>Email</label>
-        <input type="email" placeholder="nombre@empresa.com" />
-      </div>
-      <div class="frow">
-        <label><span data-l="es" class="on">Empresa</span><span data-l="en">Company</span><span data-l="de">Unternehmen</span></label>
-        <input type="text" />
-      </div>
-      <div class="frow">
-        <label><span data-l="es" class="on">Sector</span><span data-l="en">Sector</span><span data-l="de">Branche</span></label>
-        <select id="sector-select"></select>
-      </div>
-      <button class="btn-submit" onclick="openModal()">
-        <span data-l="es" class="on">Obtener acceso ahora →</span>
-        <span data-l="en">Get access now →</span>
-        <span data-l="de">Jetzt Zugang erhalten →</span>
-      </button>
-      <p class="form-legal">
-        <span data-l="es" class="on">Al enviar acepta nuestra <a href="#">política de privacidad</a>.</span>
-        <span data-l="en">By submitting you accept our <a href="#">privacy policy</a>.</span>
-        <span data-l="de">Mit Absenden stimmen Sie unserer <a href="#">Datenschutzerklärung</a> zu.</span>
-      </p>
+    <div data-lb="es" class="on">
+      <h1>Serie V-Line — Selecciona tu bomba<br/>en menos de 2 minutos con el <em>Expert Tool</em></h1>
+      <p class="hero-sub">Acceso gratuito a la herramienta de selección de bombas herméticas normalmente reservada a clientes industriales — incluida en tu formación.</p>
+    </div>
+    <div data-lb="en">
+      <h1>V-Line Series — Select your pump<br/>in less than 2 minutes with the <em>Expert Tool</em></h1>
+      <p class="hero-sub">Free access to the professional canned motor pump selection tool normally reserved for industrial clients — included with your training.</p>
+    </div>
+    <div data-lb="de">
+      <h1>V-Line Baureihe — Wählen Sie Ihre Pumpe<br/>in weniger als 2 Minuten mit dem <em>Expert Tool</em></h1>
+      <p class="hero-sub">Kostenloser Zugang zum Spaltrohrpumpen-Auswahlprogramm, das normalerweise nur Industriekunden vorbehalten ist — in Ihrer Schulung enthalten.</p>
     </div>
   </div>
 </div>
 
-<!-- PAGE BODY -->
-<div class="page">
+<!-- SPEC STRIP -->
+<div class="spec-strip">
+  <div class="spec-strip-inner">
+    <div class="spec-cell"><span class="spec-val">12–295 m</span><span class="spec-lbl"><span data-l="es" class="on">Altura manométrica</span><span data-l="en">Pumping head</span><span data-l="de">Förderhöhe</span></span></div>
+    <div class="spec-cell"><span class="spec-val">1–130 m³/h</span><span class="spec-lbl"><span data-l="es" class="on">Caudal</span><span data-l="en">Flow rate</span><span data-l="de">Fördermenge</span></span></div>
+    <div class="spec-cell"><span class="spec-val">–50 / +180 °C</span><span class="spec-lbl"><span data-l="es" class="on">Temperatura</span><span data-l="en">Temperature</span><span data-l="de">Temperatur</span></span></div>
+    <div class="spec-cell"><span class="spec-val">16–40 bar</span><span class="spec-lbl"><span data-l="es" class="on">Presión</span><span data-l="en">Pressure</span><span data-l="de">Druck</span></span></div>
+  </div>
+</div>
 
-  <!-- FEATURES -->
-  <div class="section">
-    <div class="s-label"><span data-l="es" class="on">Funcionalidades</span><span data-l="en">Features</span><span data-l="de">Funktionen</span></div>
-    <h2 class="s-title"><span data-l="es" class="on">¿Qué incluye tu acceso?</span><span data-l="en">What does your access include?</span><span data-l="de">Was beinhaltet Ihr Zugang?</span></h2>
-    <p class="s-sub"><span data-l="es" class="on">El mismo software que utilizan los ingenieros y clientes industriales de HERMETIC para dimensionar bombas herméticas.</span><span data-l="en">The same software used by HERMETIC engineers and industrial clients to size canned motor pumps.</span><span data-l="de">Dieselbe Software, die HERMETIC-Ingenieure und Industriekunden zur Dimensionierung von Spaltrohrpumpen verwenden.</span></p>
-    <div class="feature-grid">
-      <div class="feature-card">
-        <div class="feat-icon">⚙️</div>
-        <h3><span data-l="es" class="on">Selección por parámetros de proceso</span><span data-l="en">Selection by process parameters</span><span data-l="de">Auswahl nach Prozessparametern</span></h3>
-        <p><span data-l="es" class="on">Introduce caudal, presión, temperatura y densidad. El programa selecciona los modelos compatibles automáticamente.</span><span data-l="en">Enter flow rate, pressure, temperature and density. The tool selects compatible models automatically.</span><span data-l="de">Fördermenge, Druck, Temperatur und Dichte eingeben. Das Programm wählt automatisch kompatible Modelle.</span></p>
+<!-- SECTION 1: FEATURES + FORM (white) -->
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <!-- Feature picto list (left 2/3) -->
+      <div class="col col-6" style="padding-right:30px;">
+        <div class="s-label"><span data-l="es" class="on">Selección rápida</span><span data-l="en">Quick selection</span><span data-l="de">Schnellauswahl</span></div>
+        <h2 class="s-title"><span data-l="es" class="on">¿Qué incluye tu acceso?</span><span data-l="en">What does your access include?</span><span data-l="de">Was beinhaltet Ihr Zugang?</span></h2>
+        <p class="s-desc"><span data-l="es" class="on">El mismo software que utilizan ingenieros y clientes industriales de HERMETIC para dimensionar bombas herméticas.</span><span data-l="en">The same software used by HERMETIC engineers and industrial clients to size canned motor pumps.</span><span data-l="de">Dieselbe Software wie HERMETIC-Ingenieure und Industriekunden zur Dimensionierung von Spaltrohrpumpen.</span></p>
+        <ul class="picto-list">
+          <li class="picto-item">
+            <div class="picto-icon">⚙️</div>
+            <div class="picto-text">
+              <h5><span data-l="es" class="on">Parámetros del punto de operación</span><span data-l="en">Operating point parameters</span><span data-l="de">Betriebspunktparameter</span></h5>
+              <p><span data-l="es" class="on">Caudal, altura manométrica y densidad del fluido.</span><span data-l="en">Flow rate, pumping head and fluid density.</span><span data-l="de">Fördermenge, Förderhöhe und Fluiddichte.</span></p>
+            </div>
+          </li>
+          <li class="picto-item">
+            <div class="picto-icon">📐</div>
+            <div class="picto-text">
+              <h5><span data-l="es" class="on">Especificaciones de la instalación</span><span data-l="en">Plant specifications</span><span data-l="de">Anlagenspezifikationen</span></h5>
+              <p><span data-l="es" class="on">Presión, temperatura y requisitos de proceso.</span><span data-l="en">Pressure, temperature and process requirements.</span><span data-l="de">Druck, Temperatur und Prozessanforderungen.</span></p>
+            </div>
+          </li>
+          <li class="picto-item">
+            <div class="picto-icon">⚗️</div>
+            <div class="picto-text">
+              <h5><span data-l="es" class="on">Datos del fluido (+1.000 fluidos)</span><span data-l="en">Liquid data (1,000+ fluids)</span><span data-l="de">Fluiddaten (1.000+ Fluide)</span></h5>
+              <p><span data-l="es" class="on">Propiedades físico-químicas actualizadas de ácidos, disolventes e hidrocarburos.</span><span data-l="en">Up-to-date physicochemical properties of acids, solvents and hydrocarbons.</span><span data-l="de">Aktuelle physikochemische Eigenschaften von Säuren, Lösemitteln und Kohlenwasserstoffen.</span></p>
+            </div>
+          </li>
+          <li class="picto-item">
+            <div class="picto-icon">📄</div>
+            <div class="picto-text">
+              <h5><span data-l="es" class="on">Exportación de documentos técnicos</span><span data-l="en">Technical document export</span><span data-l="de">Export technischer Dokumente</span></h5>
+              <p><span data-l="es" class="on">Hojas de datos, planos y propuestas en PDF listos para proyectos de ingeniería.</span><span data-l="en">Data sheets, drawings and PDF proposals ready for engineering projects.</span><span data-l="de">Datenblätter, Zeichnungen und PDF-Angebote für Ingenieurprojekte.</span></p>
+            </div>
+          </li>
+          <li class="picto-item">
+            <div class="picto-icon">🔧</div>
+            <div class="picto-text">
+              <h5><span data-l="es" class="on">Opciones de equipamiento y accesorios</span><span data-l="en">Equipment options and accessories</span><span data-l="de">Ausrüstungsoptionen und Zubehör</span></h5>
+              <p><span data-l="es" class="on">Materiales, cierres, bridas y variantes ATEX configurables.</span><span data-l="en">Configurable materials, seals, flanges and ATEX variants.</span><span data-l="de">Konfigurierbare Werkstoffe, Dichtungen, Flansche und ATEX-Varianten.</span></p>
+            </div>
+          </li>
+          <li class="picto-item">
+            <div class="picto-icon">📈</div>
+            <div class="picto-text">
+              <h5><span data-l="es" class="on">Simulación de bomba en tiempo real</span><span data-l="en">Real-time pump simulation</span><span data-l="de">Echtzeit-Pumpensimulation</span></h5>
+              <p><span data-l="es" class="on">Curvas H-Q, eficiencia y NPSH visualizadas al instante.</span><span data-l="en">H-Q curves, efficiency and NPSH visualised instantly.</span><span data-l="de">H-Q-Kurven, Wirkungsgrad und NPSH sofort visualisiert.</span></p>
+            </div>
+          </li>
+        </ul>
       </div>
-      <div class="feature-card">
-        <div class="feat-icon">📈</div>
-        <h3><span data-l="es" class="on">Curvas de rendimiento en tiempo real</span><span data-l="en">Real-time performance curves</span><span data-l="de">Echtzeit-Leistungskurven</span></h3>
-        <p><span data-l="es" class="on">Visualiza las curvas H-Q, eficiencia y NPSH de cada modelo. Verifica el punto de operación al instante.</span><span data-l="en">View H-Q curves, efficiency and NPSH for each model. Verify the operating point instantly.</span><span data-l="de">H-Q-Kurven, Wirkungsgrad und NPSH jedes Modells anzeigen. Betriebspunkt sofort überprüfen.</span></p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">⚗️</div>
-        <h3><span data-l="es" class="on">Base de datos de +1.000 fluidos</span><span data-l="en">Database of 1,000+ fluids</span><span data-l="de">Datenbank mit über 1.000 Fluiden</span></h3>
-        <p><span data-l="es" class="on">Propiedades físico-químicas actualizadas de ácidos, disolventes, hidrocarburos y fluidos criogénicos.</span><span data-l="en">Up-to-date physicochemical properties of acids, solvents, hydrocarbons and cryogenic fluids.</span><span data-l="de">Aktuelle physikochemische Eigenschaften von Säuren, Lösemitteln, Kohlenwasserstoffen und kryogenen Fluiden.</span></p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">📄</div>
-        <h3><span data-l="es" class="on">Exportación de documentos técnicos</span><span data-l="en">Technical document export</span><span data-l="de">Export technischer Dokumente</span></h3>
-        <p><span data-l="es" class="on">Genera hojas de datos, dimensiones y propuestas en PDF listas para incluir en proyectos de ingeniería.</span><span data-l="en">Generate data sheets, dimensions and proposals in PDF ready for engineering projects.</span><span data-l="de">Datenblätter, Abmessungen und Angebote als PDF für Ingenieurprojekte generieren.</span></p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🔧</div>
-        <h3><span data-l="es" class="on">Configuración de equipamiento</span><span data-l="en">Equipment configuration</span><span data-l="de">Ausrüstungskonfiguration</span></h3>
-        <p><span data-l="es" class="on">Configura materiales, cierres, bridas y variantes ATEX directamente en la herramienta.</span><span data-l="en">Configure materials, seals, flanges and ATEX variants directly in the tool.</span><span data-l="de">Werkstoffe, Dichtungen, Flansche und ATEX-Varianten direkt im Tool konfigurieren.</span></p>
-      </div>
-      <div class="feature-card">
-        <div class="feat-icon">🎓</div>
-        <h3><span data-l="es" class="on">Acceso exclusivo para alumnos</span><span data-l="en">Exclusive student access</span><span data-l="de">Exklusiver Schulungszugang</span></h3>
-        <p><span data-l="es" class="on">Normalmente solo disponible para clientes. Tu formación en Formación Industrial te da acceso privilegiado.</span><span data-l="en">Normally only available to clients. Your training at Formación Industrial gives you privileged access.</span><span data-l="de">Normalerweise nur für Kunden. Ihre Schulung bei Formación Industrial gibt Ihnen bevorzugten Zugang.</span></p>
+
+      <!-- Form (right 1/3) -->
+      <div class="col col-6" style="max-width:380px; margin-left:auto;">
+        <div class="form-wrapper">
+          <h3><span data-l="es" class="on">Solicitar acceso gratuito</span><span data-l="en">Request free access</span><span data-l="de">Kostenlosen Zugang anfordern</span></h3>
+          <p><span data-l="es" class="on">Rellena el formulario y recibe el acceso al instante.</span><span data-l="en">Fill in the form and receive instant access.</span><span data-l="de">Formular ausfüllen und sofort Zugang erhalten.</span></p>
+          <div class="f2col">
+            <div class="form-group">
+              <label><span data-l="es" class="on">Nombre</span><span data-l="en">First name</span><span data-l="de">Vorname</span></label>
+              <input class="form-control" type="text" />
+            </div>
+            <div class="form-group">
+              <label><span data-l="es" class="on">Apellidos</span><span data-l="en">Last name</span><span data-l="de">Nachname</span></label>
+              <input class="form-control" type="text" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input class="form-control" type="email" placeholder="nombre@empresa.com" />
+          </div>
+          <div class="form-group">
+            <label><span data-l="es" class="on">Empresa</span><span data-l="en">Company</span><span data-l="de">Unternehmen</span></label>
+            <input class="form-control" type="text" />
+          </div>
+          <div class="form-group">
+            <label><span data-l="es" class="on">Sector</span><span data-l="en">Sector</span><span data-l="de">Branche</span></label>
+            <select class="form-control" id="sector-select" style="height:45px;"></select>
+          </div>
+          <button class="btn-submit" onclick="openModal()">
+            <span data-l="es" class="on">Obtener acceso ahora →</span>
+            <span data-l="en">Get access now →</span>
+            <span data-l="de">Jetzt Zugang erhalten →</span>
+          </button>
+          <p class="form-legal"><span data-l="es" class="on">Al enviar acepta nuestra <a href="#">política de privacidad</a>.</span><span data-l="en">By submitting you accept our <a href="#">privacy policy</a>.</span><span data-l="de">Mit Absenden stimmen Sie unserer <a href="#">Datenschutzerklärung</a> zu.</span></p>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <hr class="divider" />
-
-  <!-- HOW IT WORKS -->
-  <div class="section">
-    <div class="s-label"><span data-l="es" class="on">Proceso</span><span data-l="en">Process</span><span data-l="de">Ablauf</span></div>
-    <h2 class="s-title"><span data-l="es" class="on">Cómo funciona</span><span data-l="en">How it works</span><span data-l="de">So funktioniert es</span></h2>
-    <div class="steps-strip">
-      <div class="step-cell">
-        <div class="step-n">01</div>
-        <h4><span data-l="es" class="on">Regístrate</span><span data-l="en">Register</span><span data-l="de">Registrieren</span></h4>
-        <p><span data-l="es" class="on">Rellena el formulario con tus datos de contacto y empresa.</span><span data-l="en">Fill in the form with your contact and company details.</span><span data-l="de">Formular mit Kontakt- und Unternehmensdaten ausfüllen.</span></p>
-      </div>
-      <div class="step-cell">
-        <div class="step-n">02</div>
-        <h4><span data-l="es" class="on">Recibe acceso</span><span data-l="en">Receive access</span><span data-l="de">Zugang erhalten</span></h4>
-        <p><span data-l="es" class="on">Correo electrónico con tu enlace al Expert Tool y recursos adjuntos.</span><span data-l="en">Email with your link to the Expert Tool and attached resources.</span><span data-l="de">E-Mail mit dem Link zum Expert Tool und Ressourcen.</span></p>
-      </div>
-      <div class="step-cell">
-        <div class="step-n">03</div>
-        <h4><span data-l="es" class="on">Introduce datos</span><span data-l="en">Enter parameters</span><span data-l="de">Daten eingeben</span></h4>
-        <p><span data-l="es" class="on">Caudal, presión, temperatura y propiedades del fluido.</span><span data-l="en">Flow, pressure, temperature and fluid properties.</span><span data-l="de">Fördermenge, Druck, Temperatur und Fluideigenschaften.</span></p>
-      </div>
-      <div class="step-cell">
-        <div class="step-n">04</div>
-        <h4><span data-l="es" class="on">Exporta resultados</span><span data-l="en">Export results</span><span data-l="de">Ergebnisse exportieren</span></h4>
-        <p><span data-l="es" class="on">Descarga la hoja técnica y propuesta en PDF para tu proyecto.</span><span data-l="en">Download the data sheet and PDF proposal for your project.</span><span data-l="de">Technisches Datenblatt und PDF-Angebot herunterladen.</span></p>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider" />
-
-  <!-- TUTORIALS -->
-  <div class="tutorials-bg">
-    <div class="s-label" style="margin-bottom:8px;"><span data-l="es" class="on">Tutoriales</span><span data-l="en">Tutorials</span><span data-l="de">Tutorials</span></div>
-    <h2 class="s-title" style="margin-bottom:6px;"><span data-l="es" class="on">Vídeos del Expert Tool</span><span data-l="en">Expert Tool videos</span><span data-l="de">Expert Tool Videos</span></h2>
-    <p class="s-sub"><span data-l="es" class="on">Aprende a utilizar el programa en menos de 10 minutos.</span><span data-l="en">Learn to use the programme in less than 10 minutes.</span><span data-l="de">Lernen Sie das Programm in weniger als 10 Minuten zu nutzen.</span></p>
+<!-- SECTION 2: TUTORIALS (gray bg) -->
+<div class="section section-gray">
+  <div class="container">
+    <div class="s-label"><span data-l="es" class="on">Tutoriales</span><span data-l="en">Tutorials</span><span data-l="de">Tutorials</span></div>
+    <h2 class="s-title"><span data-l="es" class="on">Vídeos del Expert Tool</span><span data-l="en">Expert Tool videos</span><span data-l="de">Expert Tool Videos</span></h2>
+    <p class="s-desc"><span data-l="es" class="on">Aprende a utilizar el programa en menos de 10 minutos.</span><span data-l="en">Learn to use the tool in less than 10 minutes.</span><span data-l="de">Lernen Sie das Programm in weniger als 10 Minuten zu nutzen.</span></p>
     <div class="video-grid">
-      <div class="video-card">
-        <div class="video-thumb"><div class="play-btn">▶</div></div>
-        <div class="video-info"><span><span data-l="es" class="on">Introducción al Expert Tool</span><span data-l="en">Introduction to Expert Tool</span><span data-l="de">Einführung Expert Tool</span></span></div>
-      </div>
-      <div class="video-card">
-        <div class="video-thumb"><div class="play-btn">▶</div></div>
-        <div class="video-info"><span><span data-l="es" class="on">Interfaz de usuario</span><span data-l="en">User interface</span><span data-l="de">Benutzeroberfläche</span></span></div>
-      </div>
-      <div class="video-card">
-        <div class="video-thumb"><div class="play-btn">▶</div></div>
-        <div class="video-info"><span><span data-l="es" class="on">Selección de bomba</span><span data-l="en">Pump selection</span><span data-l="de">Pumpenauswahl</span></span></div>
-      </div>
-      <div class="video-card">
-        <div class="video-thumb"><div class="play-btn">▶</div></div>
-        <div class="video-info"><span><span data-l="es" class="on">Exportar resultados</span><span data-l="en">Export results</span><span data-l="de">Ergebnisse exportieren</span></span></div>
-      </div>
-      <div class="video-card">
-        <div class="video-thumb"><div class="play-btn">▶</div></div>
-        <div class="video-info"><span><span data-l="es" class="on">Opciones avanzadas</span><span data-l="en">Advanced options</span><span data-l="de">Erweiterte Optionen</span></span></div>
-      </div>
+      <div class="video-col"><div class="video-card"><div class="video-thumb"><div class="play-btn">▶</div></div><div class="video-info"><span><span data-l="es" class="on">Introducción</span><span data-l="en">Introduction</span><span data-l="de">Einführung</span></span></div></div></div>
+      <div class="video-col"><div class="video-card"><div class="video-thumb"><div class="play-btn">▶</div></div><div class="video-info"><span><span data-l="es" class="on">Interfaz de usuario</span><span data-l="en">User interface</span><span data-l="de">Benutzeroberfläche</span></span></div></div></div>
+      <div class="video-col"><div class="video-card"><div class="video-thumb"><div class="play-btn">▶</div></div><div class="video-info"><span><span data-l="es" class="on">Selección de bomba</span><span data-l="en">Pump selection</span><span data-l="de">Pumpenauswahl</span></span></div></div></div>
+      <div class="video-col"><div class="video-card"><div class="video-thumb"><div class="play-btn">▶</div></div><div class="video-info"><span><span data-l="es" class="on">Exportar resultados</span><span data-l="en">Data export</span><span data-l="de">Daten exportieren</span></span></div></div></div>
+      <div class="video-col"><div class="video-card"><div class="video-thumb"><div class="play-btn">▶</div></div><div class="video-info"><span><span data-l="es" class="on">Opciones avanzadas</span><span data-l="en">Miscellaneous</span><span data-l="de">Sonstiges</span></span></div></div></div>
     </div>
   </div>
+</div>
 
-  <!-- DOWNLOADS -->
-  <div class="section">
-    <div class="s-label"><span data-l="es" class="on">Descargas</span><span data-l="en">Downloads</span><span data-l="de">Downloads</span></div>
-    <h2 class="s-title"><span data-l="es" class="on">Recursos incluidos con tu acceso</span><span data-l="en">Resources included with your access</span><span data-l="de">Im Zugang enthaltene Ressourcen</span></h2>
-    <p class="s-sub"><span data-l="es" class="on">Documentación técnica exclusiva disponible tras completar el registro.</span><span data-l="en">Exclusive technical documentation available after completing registration.</span><span data-l="de">Exklusive technische Dokumentation nach der Registrierung.</span></p>
-    <div class="dl-grid">
-      <div class="dl-card">
-        <div class="dl-icon">📕</div>
-        <div>
-          <h4><span data-l="es" class="on">Catálogo General</span><span data-l="en">General Catalogue</span><span data-l="de">Hauptkatalog</span></h4>
-          <p><span data-l="es" class="on">Gama completa de bombas herméticas V-Line.</span><span data-l="en">Complete range of V-Line canned motor pumps.</span><span data-l="de">Vollständige V-Line Baureihe.</span></p>
-          <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
-        </div>
-      </div>
-      <div class="dl-card">
-        <div class="dl-icon">📊</div>
-        <div>
-          <h4><span data-l="es" class="on">Guía de Selección</span><span data-l="en">Selection Guide</span><span data-l="de">Auswahlführer</span></h4>
-          <p><span data-l="es" class="on">Manual paso a paso para dimensionar una bomba.</span><span data-l="en">Step-by-step pump sizing manual.</span><span data-l="de">Schritt-für-Schritt-Dimensionierungshandbuch.</span></p>
-          <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
-        </div>
-      </div>
-      <div class="dl-card">
-        <div class="dl-icon">⚗️</div>
-        <div>
-          <h4><span data-l="es" class="on">Compatibilidad Química</span><span data-l="en">Chemical Compatibility</span><span data-l="de">Chemische Verträglichkeit</span></h4>
-          <p><span data-l="es" class="on">Resistencia de materiales frente a +500 fluidos.</span><span data-l="en">Material resistance against 500+ fluids.</span><span data-l="de">Werkstoffbeständigkeit gegen 500+ Fluide.</span></p>
-          <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
-        </div>
-      </div>
-      <div class="dl-card">
-        <div class="dl-icon">📐</div>
-        <div>
-          <h4><span data-l="es" class="on">Planos CAD</span><span data-l="en">CAD Drawings</span><span data-l="de">CAD-Zeichnungen</span></h4>
-          <p><span data-l="es" class="on">Archivos DWG/DXF para integrar en proyectos.</span><span data-l="en">DWG/DXF files for project integration.</span><span data-l="de">DWG/DXF-Dateien für Projekte.</span></p>
-          <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
-        </div>
-      </div>
-      <div class="dl-card">
-        <div class="dl-icon">🔧</div>
-        <div>
-          <h4><span data-l="es" class="on">Manual de Operación</span><span data-l="en">Operation Manual</span><span data-l="de">Betriebsanleitung</span></h4>
-          <p><span data-l="es" class="on">Instrucciones de puesta en marcha y mantenimiento.</span><span data-l="en">Start-up and maintenance instructions.</span><span data-l="de">Inbetriebnahme- und Wartungsanleitung.</span></p>
-          <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
-        </div>
-      </div>
-      <div class="dl-card">
-        <div class="dl-icon">🎥</div>
-        <div>
-          <h4><span data-l="es" class="on">Vídeos Técnicos</span><span data-l="en">Technical Videos</span><span data-l="de">Technische Videos</span></h4>
-          <p><span data-l="es" class="on">Animaciones 3D y tutoriales del Expert Tool.</span><span data-l="en">3D animations and Expert Tool tutorials.</span><span data-l="de">3D-Animationen und Expert Tool-Tutorials.</span></p>
-          <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr class="divider" />
-
-  <!-- ABOUT -->
-  <div class="section">
-    <div class="about-grid">
-      <div class="about-visual">
-        <div class="about-icon">⚙️</div>
-        <strong><span data-l="es" class="on">Bombas de Motor Hermético</span><span data-l="en">Canned Motor Pumps</span><span data-l="de">Spaltrohrkreiselpumpen</span></strong>
-        <span>HERMETIC-Pumpen · Gundelfingen</span>
-      </div>
-      <div class="about-text">
+<!-- SECTION 3: ABOUT (white) -->
+<div class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col col-6">
+        <div class="s-label">HERMETIC-Pumpen</div>
+        <h2 class="s-title"><span data-l="es" class="on">El Expert Tool HERMETIC</span><span data-l="en">The HERMETIC Expert Tool</span><span data-l="de">Das HERMETIC Expert Tool</span></h2>
         <div data-lb="es" class="on">
-          <h2>¿Por qué bombas de motor hermético?</h2>
           <p>Las bombas de motor hermético eliminan totalmente las fugas al no disponer de sellos mecánicos. Son la solución de referencia en procesos con fluidos tóxicos, inflamables o criogénicos.</p>
+          <p>HERMETIC-Pumpen, con sede en Gundelfingen (Alemania), es el fabricante líder mundial con más de 50 años de experiencia.</p>
           <ul class="check-list">
             <li>Cero fugas — sin sellos mecánicos externos</li>
             <li>Aptas para fluidos ATEX y altamente peligrosos</li>
@@ -751,8 +664,8 @@
           </ul>
         </div>
         <div data-lb="en">
-          <h2>Why canned motor pumps?</h2>
           <p>Canned motor pumps eliminate leakage entirely by removing mechanical shaft seals. They are the reference solution for processes with toxic, flammable or cryogenic fluids.</p>
+          <p>HERMETIC-Pumpen, based in Gundelfingen (Germany), is the world's leading manufacturer with over 50 years of experience.</p>
           <ul class="check-list">
             <li>Zero leakage — no external mechanical seals</li>
             <li>Suitable for ATEX and highly hazardous fluids</li>
@@ -762,8 +675,8 @@
           </ul>
         </div>
         <div data-lb="de">
-          <h2>Warum Spaltrohrkreiselpumpen?</h2>
           <p>Spaltrohrkreiselpumpen eliminieren Leckagen vollständig, da keine mechanischen Wellendichtungen vorhanden sind.</p>
+          <p>HERMETIC-Pumpen mit Sitz in Gundelfingen ist der weltweit führende Hersteller mit über 50 Jahren Erfahrung.</p>
           <ul class="check-list">
             <li>Garantiert leckagefrei — keine Gleitringdichtungen</li>
             <li>Geeignet für ATEX und hochgefährliche Medien</li>
@@ -773,47 +686,96 @@
           </ul>
         </div>
       </div>
+      <div class="col col-6">
+        <div class="s-label"><span data-l="es" class="on">Descargas</span><span data-l="en">Downloads</span><span data-l="de">Downloads</span></div>
+        <h2 class="s-title"><span data-l="es" class="on">Recursos incluidos</span><span data-l="en">Included resources</span><span data-l="de">Enthaltene Ressourcen</span></h2>
+        <div style="margin-top:20px;">
+          <div class="dl-item">
+            <div class="dl-thumb">📕</div>
+            <div class="dl-content">
+              <h5><span data-l="es" class="on">Catálogo General V-Line</span><span data-l="en">V-Line General Catalogue</span><span data-l="de">V-Line Hauptkatalog</span></h5>
+              <p><span data-l="es" class="on">Gama completa de bombas herméticas.</span><span data-l="en">Complete range of canned motor pumps.</span><span data-l="de">Vollständige Baureihe Spaltrohrpumpen.</span></p>
+              <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
+            </div>
+          </div>
+          <div class="dl-item">
+            <div class="dl-thumb">📊</div>
+            <div class="dl-content">
+              <h5><span data-l="es" class="on">Guía de Selección</span><span data-l="en">Selection Guide</span><span data-l="de">Auswahlführer</span></h5>
+              <p><span data-l="es" class="on">Manual paso a paso para dimensionar una bomba.</span><span data-l="en">Step-by-step pump sizing manual.</span><span data-l="de">Schritt-für-Schritt-Dimensionierungshandbuch.</span></p>
+              <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
+            </div>
+          </div>
+          <div class="dl-item">
+            <div class="dl-thumb">📐</div>
+            <div class="dl-content">
+              <h5><span data-l="es" class="on">Planos CAD (DWG/DXF)</span><span data-l="en">CAD Drawings (DWG/DXF)</span><span data-l="de">CAD-Zeichnungen (DWG/DXF)</span></h5>
+              <p><span data-l="es" class="on">Archivos para integrar en proyectos de ingeniería.</span><span data-l="en">Files for integration into engineering projects.</span><span data-l="de">Dateien für Ingenieurprojekte.</span></p>
+              <span class="dl-badge">🔒 <span data-l="es" class="on">Tras registro</span><span data-l="en">After registration</span><span data-l="de">Nach Registrierung</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 
-  <!-- CTA -->
-  <div class="cta-banner">
+<!-- SECTION 4: FEATURES GRID (green-light bg) -->
+<div class="section section-green">
+  <div class="container">
+    <div class="s-label"><span data-l="es" class="on">Funcionalidades</span><span data-l="en">Features</span><span data-l="de">Funktionen</span></div>
+    <h2 class="s-title"><span data-l="es" class="on">¿Por qué usar el Expert Tool?</span><span data-l="en">Why use the Expert Tool?</span><span data-l="de">Warum das Expert Tool nutzen?</span></h2>
+    <div class="row" style="margin-top:24px;">
+      <div class="col col-3"><div class="grid-card"><span class="card-icon">⚗️</span><h4><span data-l="es" class="on">+1.000 fluidos</span><span data-l="en">1,000+ fluids</span><span data-l="de">1.000+ Fluide</span></h4><p><span data-l="es" class="on">Base de datos actualizada de propiedades físico-químicas.</span><span data-l="en">Updated database of physicochemical properties.</span><span data-l="de">Aktualisierte Datenbank physikochemischer Eigenschaften.</span></p></div></div>
+      <div class="col col-3"><div class="grid-card"><span class="card-icon">📈</span><h4><span data-l="es" class="on">Curvas H-Q</span><span data-l="en">H-Q curves</span><span data-l="de">H-Q-Kurven</span></h4><p><span data-l="es" class="on">Eficiencia y NPSH visualizados en tiempo real.</span><span data-l="en">Efficiency and NPSH visualised in real time.</span><span data-l="de">Wirkungsgrad und NPSH in Echtzeit.</span></p></div></div>
+      <div class="col col-3"><div class="grid-card"><span class="card-icon">📄</span><h4><span data-l="es" class="on">Export PDF</span><span data-l="en">PDF export</span><span data-l="de">PDF-Export</span></h4><p><span data-l="es" class="on">Hojas de datos y propuestas listas para clientes.</span><span data-l="en">Data sheets and proposals ready for clients.</span><span data-l="de">Datenblätter und Angebote für Kunden.</span></p></div></div>
+      <div class="col col-3"><div class="grid-card"><span class="card-icon">🔒</span><h4><span data-l="es" class="on">Acceso exclusivo</span><span data-l="en">Exclusive access</span><span data-l="de">Exklusiver Zugang</span></h4><p><span data-l="es" class="on">Normalmente solo disponible para clientes industriales.</span><span data-l="en">Normally only available to industrial clients.</span><span data-l="de">Normalerweise nur für Industriekunden.</span></p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
     <div>
       <h2><span data-l="es" class="on">¿Listo para empezar la selección?</span><span data-l="en">Ready to start the selection?</span><span data-l="de">Bereit mit der Auswahl zu beginnen?</span></h2>
-      <p><span data-l="es" class="on">Regístrate gratis y obtén acceso inmediato al Expert Tool V-Line de HERMETIC.</span><span data-l="en">Register for free and get immediate access to HERMETIC's Expert Tool V-Line.</span><span data-l="de">Kostenlos registrieren und sofortigen Zugang zum HERMETIC V-Line Expert Tool erhalten.</span></p>
+      <p><span data-l="es" class="on">Regístrate gratis y obtén acceso inmediato al Expert Tool V-Line de HERMETIC.</span><span data-l="en">Register for free and get immediate access to HERMETIC's Expert Tool V-Line.</span><span data-l="de">Kostenlos registrieren und sofortigen Zugang erhalten.</span></p>
     </div>
     <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" class="btn-cta">
-      <span data-l="es" class="on">Solicitar acceso →</span>
-      <span data-l="en">Request access →</span>
-      <span data-l="de">Zugang anfordern →</span>
+      <span data-l="es" class="on">Solicitar acceso →</span><span data-l="en">Request access →</span><span data-l="de">Zugang anfordern →</span>
     </a>
   </div>
-
-</div><!-- /page -->
+</div>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
+  <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="logo-hermetic.svg" alt="HERMETIC-Pumpen Ibérica" />
-        <p><span data-l="es" class="on">Bombas de motor hermético para la industria química y petroquímica. Tecnología alemana con soporte local en España.</span><span data-l="en">Canned motor pumps for the chemical and petrochemical industry. German technology with local support in Spain.</span><span data-l="de">Spaltrohrpumpen für die Chemie- und Petrochemieindustrie. Deutsche Technologie mit lokalem Support in Spanien.</span></p>
+      <div class="footer-col">
+        <div class="footer-brand">
+          <img src="logo-hermetic.svg" alt="HERMETIC-Pumpen Ibérica" />
+          <p><span data-l="es" class="on">Bombas de motor hermético para la industria química y petroquímica. Tecnología alemana con soporte local en España.</span><span data-l="en">Canned motor pumps for the chemical and petrochemical industry. German technology with local support in Spain.</span><span data-l="de">Spaltrohrpumpen für die Chemie- und Petrochemieindustrie. Deutsche Technologie mit Support in Spanien.</span></p>
+        </div>
       </div>
       <div class="footer-col">
-        <h4><span data-l="es" class="on">Contacto</span><span data-l="en">Contact</span><span data-l="de">Kontakt</span></h4>
+        <h5><span data-l="es" class="on">Servicio</span><span data-l="en">Service</span><span data-l="de">Service</span></h5>
+        <ul>
+          <li><a href="https://www.hermetic-pumpen.com/en/expert-tool/canned-motor-pumps-for-chemical-and-petrochemical-industries" target="_blank">Expert Tool V-Line</a></li>
+          <li><a href="https://formacion-industrial.com/" target="_blank">Formación Industrial</a></li>
+          <li><a href="https://www.hermetic-pumpen.com" target="_blank">hermetic-pumpen.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5><span data-l="es" class="on">Contacto</span><span data-l="en">Contact</span><span data-l="de">Kontakt</span></h5>
         <ul>
           <li><a href="mailto:perez.ivan@hermetic-pumpen.com">perez.ivan@hermetic-pumpen.com</a></li>
           <li><a href="tel:+34659743599">+34 659 743 599</a></li>
-          <li><a href="https://www.hermetic-pumpen.com" target="_blank">hermetic-pumpen.com</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 HERMETIC-Pumpen Ibérica · <span data-l="es" class="on">Todos los derechos reservados</span><span data-l="en">All rights reserved</span><span data-l="de">Alle Rechte vorbehalten</span></span>
-      <span>
-        <a href="#">Legal</a> ·
-        <a href="#"><span data-l="es" class="on">Privacidad</span><span data-l="en">Privacy</span><span data-l="de">Datenschutz</span></a>
-      </span>
+      <span><a href="#">Legal</a> · <a href="#"><span data-l="es" class="on">Privacidad</span><span data-l="en">Privacy</span><span data-l="de">Datenschutz</span></a></span>
     </div>
   </div>
 </footer>
@@ -821,13 +783,11 @@
 <script>
   const EXPERT_URL = 'https://www.hermetic-pumpen.com/en/expert-tool/canned-motor-pumps-for-chemical-and-petrochemical-industries';
   const copy = {
-    es: { sectors: ['Seleccionar sector…','Industria química','Petroquímica / Refino','Farmacéutica','Tratamiento de aguas','Energía / Oil & Gas','Ingeniería / Consultoría','Otro'], title: '¡Acceso concedido!', body: 'Recibirá un correo con el enlace al Expert Tool V-Line y todos los recursos descargables.', expert: 'Acceder al Expert Tool V-Line →', close: 'Cerrar' },
-    en: { sectors: ['Select sector…','Chemical industry','Petrochemical / Refining','Pharmaceutical','Water treatment','Energy / Oil & Gas','Engineering / Consulting','Other'], title: 'Access granted!', body: 'You will receive an email with the link to the V-Line Expert Tool and all downloadable resources.', expert: 'Access the Expert Tool V-Line →', close: 'Close' },
-    de: { sectors: ['Branche auswählen…','Chemieindustrie','Petrochemie / Raffinerie','Pharmazeutisch','Wasseraufbereitung','Energie / Öl & Gas','Ingenieur / Beratung','Sonstiges'], title: 'Zugang gewährt!', body: 'Sie erhalten eine E-Mail mit dem Link zum V-Line Expert Tool und allen Ressourcen.', expert: 'Zum Expert Tool V-Line →', close: 'Schließen' }
+    es: { sectors: ['Seleccionar sector…','Industria química','Petroquímica / Refino','Farmacéutica','Tratamiento de aguas','Energía / Oil & Gas','Ingeniería / Consultoría','Otro'], title:'¡Acceso concedido!', body:'Recibirá un correo con el enlace al Expert Tool V-Line y todos los recursos.', expert:'Acceder al Expert Tool V-Line →', close:'Cerrar' },
+    en: { sectors: ['Select sector…','Chemical industry','Petrochemical / Refining','Pharmaceutical','Water treatment','Energy / Oil & Gas','Engineering / Consulting','Other'], title:'Access granted!', body:'You will receive an email with the link to the V-Line Expert Tool and all resources.', expert:'Access the Expert Tool V-Line →', close:'Close' },
+    de: { sectors: ['Branche auswählen…','Chemieindustrie','Petrochemie / Raffinerie','Pharmazeutisch','Wasseraufbereitung','Energie / Öl & Gas','Ingenieur / Beratung','Sonstiges'], title:'Zugang gewährt!', body:'Sie erhalten eine E-Mail mit dem Link zum V-Line Expert Tool und allen Ressourcen.', expert:'Zum Expert Tool V-Line →', close:'Schließen' }
   };
-
   let lang = 'es';
-
   function setLang(l, btn) {
     lang = l;
     document.querySelectorAll('[data-l]').forEach(el => el.classList.toggle('on', el.dataset.l === l));
@@ -836,12 +796,10 @@
     if (btn) btn.classList.add('active');
     updateSectors();
   }
-
   function updateSectors() {
     const sel = document.getElementById('sector-select');
-    sel.innerHTML = copy[lang].sectors.map((o, i) => `<option value="${i===0?'':o}">${o}</option>`).join('');
+    sel.innerHTML = copy[lang].sectors.map((o,i) => `<option value="${i===0?'':o}">${o}</option>`).join('');
   }
-
   function openModal() {
     const t = copy[lang];
     document.getElementById('m-title').textContent = t.title;
@@ -851,7 +809,6 @@
     document.getElementById('m-btn').textContent = t.close;
     document.getElementById('modal').classList.add('open');
   }
-
   updateSectors();
 </script>
 </body>

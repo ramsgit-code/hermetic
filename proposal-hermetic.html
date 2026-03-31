@@ -83,6 +83,27 @@
     .ghl-row h4 { font-size: 14px; font-weight: 700; color: var(--blue); margin-bottom: 2px; }
     .ghl-row p { font-size: 13px; color: var(--mid); }
 
+    /* COMPARISON TABLE */
+    .compare-table { width: 100%; border-collapse: collapse; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 2px 8px rgba(0,53,128,0.05); }
+    .compare-table thead tr { background: var(--dark); color: white; }
+    .compare-table thead th { padding: 14px 20px; text-align: left; font-size: 13px; font-weight: 700; letter-spacing: 0.3px; }
+    .compare-table thead th:nth-child(2) { background: #f8faff; color: var(--mid); text-align: center; }
+    .compare-table thead th:nth-child(3) { background: var(--blue); text-align: center; }
+    .compare-table tbody tr { border-bottom: 1px solid var(--border); }
+    .compare-table tbody tr:last-child { border-bottom: none; }
+    .compare-table tbody tr:hover { background: #f8faff; }
+    .compare-table tbody td { padding: 12px 20px; font-size: 13px; color: var(--text); }
+    .compare-table tbody td:nth-child(2),
+    .compare-table tbody td:nth-child(3) { text-align: center; font-size: 16px; }
+    .compare-table tbody td:nth-child(3) { background: rgba(0,53,128,0.03); }
+    .compare-table .row-total { background: var(--dark) !important; }
+    .compare-table .row-total td { color: white; font-weight: 700; font-size: 14px; padding: 14px 20px; }
+    .compare-table .row-total td:nth-child(2) { background: #2a3a5c; color: rgba(255,255,255,0.7); }
+    .compare-table .row-total td:nth-child(3) { background: var(--blue); color: white; }
+    .col-head-label { font-size: 10px; font-weight: 400; opacity: 0.7; display: block; margin-top: 2px; }
+    .check-yes { color: #16a34a; }
+    .check-no  { color: #d1d5db; }
+
     /* TIMELINE */
     .tl-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .tl-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 20px; box-shadow: 0 1px 4px rgba(0,53,128,0.04); }
@@ -233,6 +254,36 @@
       </div>
     </div>
 
+    <!-- COMPARISON TABLE -->
+    <div class="section">
+      <div class="sec-title">Options</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Without GHL<span class="col-head-label">€0 / month</span></th>
+            <th>With GoHighLevel<span class="col-head-label">€97 / month</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Spanish landing page on hermetic-pumpen.com</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Lead capture form</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Lead storage</td><td>Excel / Google Sheets</td><td>CRM database</td></tr>
+          <tr><td>Email notification to sales on new lead</td><td>Manual</td><td>Automatic</td></tr>
+          <tr><td>Welcome email to student</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Automated follow-up sequences (5–7 days)</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Visual sales pipeline</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Analytics &amp; conversion reports</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>YouTube video embedding</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+        </tbody>
+        <tr class="row-total">
+          <td>Monthly cost</td>
+          <td>€0</td>
+          <td>€97</td>
+        </tr>
+      </table>
+    </div>
+
     <!-- TIMELINE -->
     <div class="section">
       <div class="sec-title">Delivery</div>
@@ -335,6 +386,36 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- COMPARISON TABLE -->
+    <div class="section">
+      <div class="sec-title">Optionen</div>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Funktion</th>
+            <th>Ohne GHL<span class="col-head-label">€0 / Monat</span></th>
+            <th>Mit GoHighLevel<span class="col-head-label">€97 / Monat</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Spanische Landing Page auf hermetic-pumpen.com</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Lead-Erfassungsformular</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Lead-Speicherung</td><td>Excel / Google Sheets</td><td>CRM-Datenbank</td></tr>
+          <tr><td>E-Mail-Benachrichtigung an Vertrieb bei neuem Lead</td><td>Manuell</td><td>Automatisch</td></tr>
+          <tr><td>Willkommens-E-Mail an Teilnehmer</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Automatisierte Follow-up-Sequenzen (5–7 Tage)</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Visuelle Vertriebspipeline</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>Analyse &amp; Konversionsberichte</td><td><span class="check-no">✗</span></td><td><span class="check-yes">✓</span></td></tr>
+          <tr><td>YouTube-Video-Einbettung</td><td><span class="check-yes">✓</span></td><td><span class="check-yes">✓</span></td></tr>
+        </tbody>
+        <tr class="row-total">
+          <td>Monatliche Kosten</td>
+          <td>€0</td>
+          <td>€97</td>
+        </tr>
+      </table>
     </div>
 
     <!-- TIMELINE -->
